@@ -21,18 +21,52 @@ namespace bankolas
                 list.Add(a);
             }
 
-            Menu(list);
+            Felhasznalo(list);
         }
 
+        static void Felhasznalo(List<Account> list)
+        {
+            string user = string.Empty;
+            Console.WriteLine("Tulajdonsok:");
+            foreach(Account a in list)
+            {
+                Console.WriteLine(a.getTulajdonos());
+             
+            }
 
-        static void Menu(List<Account> list)
+            bool bennevan = false;
+            do
+            {
+                Console.Write("Válasza ki a felhasználót az adott listából:");
+                user = Console.ReadLine();
+
+                foreach (Account a in list)
+                {
+                    if (user == a.getTulajdonos())
+                    {
+                        bennevan = true;
+                    }
+                }
+                if(bennevan == false)
+                {
+                    Console.WriteLine("Adja meg újra!");
+                }
+
+
+            } while (bennevan == false);
+
+            Menu(list, user);
+      
+           
+        }
+        static void Menu(List<Account> list, string user)
         {
             Console.Clear();
             char opcio;
 
             do
             {
-                Console.WriteLine($"Szia! ");
+                Console.WriteLine($"Szép napot {user}! ");
                 Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nVálasszon a kívánt opciók közül: ");
                 opcio = Convert.ToChar(Console.ReadLine().ToUpper());
 
@@ -65,12 +99,12 @@ namespace bankolas
         static void Befiztes(List<Account> list)
         {
 
-            Naplozas(list);
+     
         }
         static void Kivetel(List<Account> list)
         {
 
-            Naplozas(list);
+
         }
         static void Adatok_Kiir(List<Account> list)
         {
@@ -82,17 +116,14 @@ namespace bankolas
             }
             Console.WriteLine("Nyomjon meg egy gombot, hogy vissza térjen a menübe!");
             Console.ReadKey();
-            Menu(list);
+        
         }
         static void Hitelkeretmod(List<Account> list)
         {
 
-            Naplozas(list);
-        }
-        static void Naplozas(List<Account> list)
-        {
 
         }
+        
 
 
     }
