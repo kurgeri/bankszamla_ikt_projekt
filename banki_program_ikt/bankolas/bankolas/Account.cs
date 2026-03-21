@@ -12,5 +12,19 @@ namespace bankolas
         private string tulajdonos;
         private decimal egyenleg;
         private decimal hitelkeret;
+
+
+        public Account(string invnum, string owner, decimal balance)
+        {
+            szamlaszam = invnum;
+            tulajdonos = owner;
+            egyenleg = balance;
+  
+        }
+
+        public override string ToString()
+        {
+            return $"Tulajdonos:{tulajdonos}, Egyenleg:{egyenleg}, Számlaszám:{szamlaszam}";
+        }
     }
 }

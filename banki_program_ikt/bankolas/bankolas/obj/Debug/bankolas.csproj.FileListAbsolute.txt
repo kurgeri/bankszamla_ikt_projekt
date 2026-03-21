@@ -1,0 +1,8 @@
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\bin\Debug\bankolas.exe.config
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\bin\Debug\bankolas.exe
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\bin\Debug\bankolas.pdb
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\obj\Debug\bankolas.csproj.AssemblyReference.cache
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\obj\Debug\bankolas.csproj.CoreCompileInputs.cache
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\obj\Debug\bankolas.exe
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\obj\Debug\bankolas.pdb
+C:\Users\Gergo\Desktop\MINDEN\Suli\2025-2026_tanev\2025-2026\C#\bankszamla_ikt_projekt\banki_program_ikt\bankolas\bankolas\obj\Debug\bankolas.exe.config
