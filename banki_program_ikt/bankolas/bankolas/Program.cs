@@ -104,6 +104,7 @@ namespace bankolas
         {
             decimal befizetett = 0;
             bool sikeresbefiz = false;
+            bool rosszadat_e = false;
             do
             {
                 Console.Write("Mennyit szeretne befizetni?: ");
@@ -114,6 +115,7 @@ namespace bankolas
                 catch(Exception ex)
                 {
                     Console.WriteLine("Nem megfelelő adat!");
+                    rosszadat_e = true;
                 }
              
                 foreach (Account a in list)
@@ -122,7 +124,7 @@ namespace bankolas
                     {
                         sikeresbefiz = true;
                     }
-                    else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false)
+                    else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false && rosszadat_e == false)
                     {
 
                         Console.WriteLine("Negatív összeget nem adhat hozzá a számlájához!");
@@ -143,8 +145,17 @@ namespace bankolas
             bool sikereskivet = false;
             do
             {
+
                 Console.Write("Mennyit szeretne kivenni?: ");
-                kivett = Convert.ToDecimal(Console.ReadLine());
+                try
+                {
+                    kivett = Convert.ToDecimal(Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Nem megfelelő adat!");
+                }
+
                 foreach (Account a in list)
                 {
                     if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == true )
@@ -166,7 +177,10 @@ namespace bankolas
         }
         static void Utalas(List<Account> list, string user)
         {
+           foreach (Account a in list)
+            {
 
+            }
         }
         static void Adatok_Kiir(List<Account> list, string user)
         {
