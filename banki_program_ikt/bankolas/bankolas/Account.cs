@@ -20,11 +20,51 @@ namespace bankolas
             szamlaszam = invnum;
             tulajdonos = owner;
             egyenleg = balance;
+
         
   
         }
         public string getTulajdonos()
         { return tulajdonos; }
+
+        public decimal getEgyenleg()
+        {
+            return egyenleg;
+        }
+    
+
+        public bool DepositSuccesfull(decimal osszeg)
+        {
+      
+            if (osszeg > 0)
+            {
+                egyenleg += osszeg;
+                return true;
+               
+            }
+            else
+            {
+                return false;
+            
+            }
+            
+            
+        }
+
+        public bool WithDrawSuccesfull(decimal osszeg)
+        {
+            if (egyenleg - osszeg >= 0)
+            {
+                egyenleg = egyenleg - osszeg;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+           
+        }
 
         public List<string> Naplozas(string muvelet)
         {

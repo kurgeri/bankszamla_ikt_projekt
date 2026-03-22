@@ -75,13 +75,17 @@ namespace bankolas
                 {
                     case 'B':
                         Console.Clear();
-                        Befiztes(list);
+                        Befiztes(list,user);
                         break;
                     case 'K':
-                        Kivetel(list);
+                        Console.Clear();
+                        Kivetel(list,user);
+                        break;
+                    case 'U':
+                        Utalas(list,user);
                         break;
                     case 'A':
-                        Adatok_Kiir(list);
+                        Adatok_Kiir(list,user);
                         break;
                     case 'H':
                         Hitelkeretmod(list);
@@ -92,21 +96,79 @@ namespace bankolas
                         break;
                 }
 
-            } while (opcio != 'N' && opcio != 'Ú' && opcio != 'L' && opcio != 'K' && opcio != 'F');
+            } while (opcio != 'B' && opcio != 'K' && opcio != 'A' && opcio != 'H' && opcio != 'U');
 
 
         }
-        static void Befiztes(List<Account> list)
+        static void Befiztes(List<Account> list,string user)
+        {
+            decimal befizetett = 0;
+            bool sikeresbefiz = false;
+            do
+            {
+                Console.Write("Mennyit szeretne befizetni?: ");
+                try
+                {
+                    befizetett = Convert.ToDecimal(Console.ReadLine());
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Nem megfelelő adat!");
+                }
+             
+                foreach (Account a in list)
+                {
+                    if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == true)
+                    {
+                        sikeresbefiz = true;
+                    }
+                    else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false)
+                    {
+
+                        Console.WriteLine("Negatív összeget nem adhat hozzá a számlájához!");
+
+                    }
+                }
+            } while (sikeresbefiz == false);
+            Console.WriteLine("Sikeres befizetés! Nyomjon meg egy gombot, hogy vissza térjen a menübe");
+            Console.ReadKey();
+            Menu(list,user);
+
+
+
+        }
+        static void Kivetel(List<Account> list, string user)
+        {
+            decimal kivett = 0;
+            bool sikereskivet = false;
+            do
+            {
+                Console.Write("Mennyit szeretne kivenni?: ");
+                kivett = Convert.ToDecimal(Console.ReadLine());
+                foreach (Account a in list)
+                {
+                    if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == true )
+                    {
+                        sikereskivet = true;
+                    }
+                    else if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == false)
+                    {
+
+                        Console.WriteLine("Nem vehet ki többet a számlájáról mint amennyi pénz van rajta!");
+
+                    }
+                }
+            } while (sikereskivet == false);
+            Console.WriteLine("Sikeres kivétel! Nyomjon meg egy gombot, hogy vissza térjen a menübe");
+            Console.ReadKey();
+            Menu(list, user);
+
+        }
+        static void Utalas(List<Account> list, string user)
         {
 
-     
         }
-        static void Kivetel(List<Account> list)
-        {
-
-
-        }
-        static void Adatok_Kiir(List<Account> list)
+        static void Adatok_Kiir(List<Account> list, string user)
         {
             Console.Clear();
             Console.WriteLine("Adatok:");
@@ -116,6 +178,7 @@ namespace bankolas
             }
             Console.WriteLine("Nyomjon meg egy gombot, hogy vissza térjen a menübe!");
             Console.ReadKey();
+            Menu(list,user);
         
         }
         static void Hitelkeretmod(List<Account> list)
