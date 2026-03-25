@@ -178,56 +178,71 @@ namespace bankolas
         }
         static void Utalas(List<Account> list, string user)
         {
-            Console.WriteLine("Személyek akiknek tud utalni");
+        
             List<string> szemelyek = new List<string>();
+            bool nincspenz = false;
 
             foreach (Account a in list)
             {
-                if(user == a.getTulajdonos())
+               
+                if(user == a.getTulajdonos() && a.getEgyenleg() <= 0)
                 {
-
+                    nincspenz = true;
                 }
-                else
+                else if(user != a.getTulajdonos())
                 {
                     szemelyek.Add(a.getTulajdonos());
                 }
             }
-            foreach (string s in szemelyek)
+            if (nincspenz == true)
             {
-                Console.WriteLine(s);
+                Console.WriteLine("Nincs pénz a bankszámláján, nem tud utalni!");
+                Console.ReadKey();
+                Menu(list, user);
             }
-            bool goodinput = false;
-            string utaltszemely = string.Empty;
-            decimal utalando = 0;
-            do { 
-
-              
-            Console.WriteLine("Kinek szeretne utalni?");
-            utaltszemely = Console.ReadLine();
+            else
+            {
+                Console.WriteLine("Személyek akiknek tud utalni");
                 foreach (string s in szemelyek)
                 {
-                    if (utaltszemely == s)
+                    Console.WriteLine(s);
+                }
+                bool goodinput = false;
+                string utaltszemely = string.Empty;
+                decimal utalando = 0;
+                do
+                {
+
+
+                    Console.WriteLine("Kinek szeretne utalni?");
+                    utaltszemely = Console.ReadLine();
+                    foreach (string s in szemelyek)
                     {
-                     
+                        if (utaltszemely == s)
+                        {
+
+                            goodinput = true;
+                        }
+
+                    }
+                } while (goodinput == false);
+                goodinput = false;
+                do
+                {
+                    Console.WriteLine("Mennyit szeretne utalni?:");
+                    try
+                    {
+                        utalando = Convert.ToDecimal(Console.ReadLine());
                         goodinput = true;
                     }
-                    
-                }
-            } while (goodinput == false);
-            goodinput = false;
-            do
-            {
-                Console.WriteLine("Mennyit szeretne utalni?:");
-                try
-                {
-                    utalando = Convert.ToDecimal(Console.ReadLine());
-                    goodinput = true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Nem megfelelő adat!");
-                }
-            } while (goodinput == false);
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Nem megfelelő adat!");
+                    }
+                } while (goodinput == false);
+
+
+            }
 
 
 
