@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\",
+  "WorkspaceRootPath": "J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|c:\\users\\gergo\\desktop\\minden\\suli\\2025-2026_tanev\\2025-2026\\c#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|j:\\2025-2026\\c#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|solutionrelative:bankolas\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE5917DE-C3DC-4BDE-9473-C82006787D18}|bankolas\\bankolas.csproj|solutionrelative:bankolas\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Account.cs",
-              "DocumentMoniker": "C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Account.cs",
+              "DocumentMoniker": "J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Account.cs",
               "RelativeDocumentMoniker": "bankolas\\Account.cs",
-              "ToolTip": "C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Account.cs",
+              "ToolTip": "J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Account.cs",
               "RelativeToolTip": "bankolas\\Account.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCYAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAIwCYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-17T13:46:45.587Z",
               "EditorCaption": ""
@@ -37,11 +37,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Program.cs",
+              "DocumentMoniker": "J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Program.cs",
               "RelativeDocumentMoniker": "bankolas\\Program.cs",
-              "ToolTip": "C:\\Users\\Gergo\\Desktop\\MINDEN\\Suli\\2025-2026_tanev\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Program.cs",
+              "ToolTip": "J:\\2025-2026\\C#\\bankszamla_ikt_projekt\\banki_program_ikt\\bankolas\\bankolas\\Program.cs",
               "RelativeToolTip": "bankolas\\Program.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAawHIAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAAAIwNQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-17T13:46:23.552Z",
               "EditorCaption": ""

@@ -82,6 +82,7 @@ namespace bankolas
                         Kivetel(list,user);
                         break;
                     case 'U':
+                        Console.Clear();
                         Utalas(list,user);
                         break;
                     case 'A':
@@ -177,10 +178,59 @@ namespace bankolas
         }
         static void Utalas(List<Account> list, string user)
         {
-           foreach (Account a in list)
-            {
+            Console.WriteLine("Személyek akiknek tud utalni");
+            List<string> szemelyek = new List<string>();
 
+            foreach (Account a in list)
+            {
+                if(user == a.getTulajdonos())
+                {
+
+                }
+                else
+                {
+                    szemelyek.Add(a.getTulajdonos());
+                }
             }
+            foreach (string s in szemelyek)
+            {
+                Console.WriteLine(s);
+            }
+            bool goodinput = false;
+            string utaltszemely = string.Empty;
+            decimal utalando = 0;
+            do { 
+
+              
+            Console.WriteLine("Kinek szeretne utalni?");
+            utaltszemely = Console.ReadLine();
+                foreach (string s in szemelyek)
+                {
+                    if (utaltszemely == s)
+                    {
+                     
+                        goodinput = true;
+                    }
+                    
+                }
+            } while (goodinput == false);
+            goodinput = false;
+            do
+            {
+                Console.WriteLine("Mennyit szeretne utalni?:");
+                try
+                {
+                    utalando = Convert.ToDecimal(Console.ReadLine());
+                    goodinput = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Nem megfelelő adat!");
+                }
+            } while (goodinput == false);
+
+
+
         }
         static void Adatok_Kiir(List<Account> list, string user)
         {
