@@ -28,10 +28,10 @@ namespace bankolas
         {
             string user = string.Empty;
             Console.WriteLine("Tulajdonsok:");
-            foreach(Account a in list)
+            foreach (Account a in list)
             {
                 Console.WriteLine(a.getTulajdonos());
-             
+
             }
 
             bool bennevan = false;
@@ -47,7 +47,7 @@ namespace bankolas
                         bennevan = true;
                     }
                 }
-                if(bennevan == false)
+                if (bennevan == false)
                 {
                     Console.WriteLine("Adja meg újra!");
                 }
@@ -56,8 +56,8 @@ namespace bankolas
             } while (bennevan == false);
 
             Menu(list, user);
-      
-           
+
+
         }
         static void Menu(List<Account> list, string user)
         {
@@ -75,18 +75,18 @@ namespace bankolas
                 {
                     case 'B':
                         Console.Clear();
-                        Befiztes(list,user);
+                        Befiztes(list, user);
                         break;
                     case 'K':
                         Console.Clear();
-                        Kivetel(list,user);
+                        Kivetel(list, user);
                         break;
                     case 'U':
                         Console.Clear();
-                        Utalas(list,user);
+                        Utalas(list, user);
                         break;
                     case 'A':
-                        Adatok_Kiir(list,user);
+                        Adatok_Kiir(list, user);
                         break;
                     case 'H':
                         Hitelkeretmod(list);
@@ -101,7 +101,7 @@ namespace bankolas
 
 
         }
-        static void Befiztes(List<Account> list,string user)
+        static void Befiztes(List<Account> list, string user)
         {
             decimal befizetett = 0;
             bool sikeresbefiz = false;
@@ -109,33 +109,36 @@ namespace bankolas
             do
             {
                 Console.Write("Mennyit szeretne befizetni?: ");
-                try
+                string bekert = Console.ReadLine();
+                if (!DecConverter(bekert))
                 {
-                    befizetett = Convert.ToDecimal(Console.ReadLine());
+                    Console.WriteLine("Nem megfelelő adat típust adott meg!");
                 }
-                catch(Exception ex)
+                else
                 {
-                    Console.WriteLine("Nem megfelelő adat!");
-                    rosszadat_e = true;
-                }
-             
-                foreach (Account a in list)
-                {
-                    if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == true)
-                    {
-                        sikeresbefiz = true;
-                    }
-                    else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false && rosszadat_e == false)
-                    {
+                    befizetett = Convert.ToDecimal(bekert);
 
-                        Console.WriteLine("Negatív összeget nem adhat hozzá a számlájához!");
 
+
+                    foreach (Account a in list)
+                    {
+                        if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == true)
+                        {
+                            sikeresbefiz = true;
+                        }
+                        else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false && rosszadat_e == false)
+                        {
+
+                            Console.WriteLine("Negatív összeget nem adhat hozzá a számlájához!");
+
+                        }
                     }
                 }
             } while (sikeresbefiz == false);
+
             Console.WriteLine("Sikeres befizetés! Nyomjon meg egy gombot, hogy vissza térjen a menübe");
             Console.ReadKey();
-            Menu(list,user);
+            Menu(list, user);
 
 
 
@@ -148,26 +151,29 @@ namespace bankolas
             {
 
                 Console.Write("Mennyit szeretne kivenni?: ");
-                try
+                string bekert = Console.ReadLine();
+
+
+                if (!DecConverter(bekert))
                 {
-                    kivett = Convert.ToDecimal(Console.ReadLine());
+                    Console.WriteLine("Nem megfelelő adat típust adott meg!");
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Nem megfelelő adat!");
-                }
+                    kivett = Convert.ToDecimal(bekert);
 
-                foreach (Account a in list)
-                {
-                    if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == true )
+                    foreach (Account a in list)
                     {
-                        sikereskivet = true;
-                    }
-                    else if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == false)
-                    {
+                        if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == true)
+                        {
+                            sikereskivet = true;
+                        }
+                        else if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == false)
+                        {
 
-                        Console.WriteLine("Nem vehet ki többet a számlájáról mint amennyi pénz van rajta!");
+                            Console.WriteLine("Nem vehet ki többet a számlájáról mint amennyi pénz van rajta!");
 
+                        }
                     }
                 }
             } while (sikereskivet == false);
@@ -178,18 +184,18 @@ namespace bankolas
         }
         static void Utalas(List<Account> list, string user)
         {
-        
+
             List<string> szemelyek = new List<string>();
             bool nincspenz = false;
 
             foreach (Account a in list)
             {
-               
-                if(user == a.getTulajdonos() && a.getEgyenleg() <= 0)
+
+                if (user == a.getTulajdonos() && a.getEgyenleg() <= 0)
                 {
                     nincspenz = true;
                 }
-                else if(user != a.getTulajdonos())
+                else if (user != a.getTulajdonos())
                 {
                     szemelyek.Add(a.getTulajdonos());
                 }
@@ -209,7 +215,7 @@ namespace bankolas
                 }
                 bool goodinput = false;
                 string utaltszemely = string.Empty;
-                decimal utalando = 0;
+             
                 do
                 {
 
@@ -223,22 +229,36 @@ namespace bankolas
 
                             goodinput = true;
                         }
+                        else
+                        {
+                            Console.WriteLine($"Nincs ilyen személy a listában!");
+                        }
 
                     }
                 } while (goodinput == false);
                 goodinput = false;
+                decimal utalando = 0;
                 do
                 {
+
                     Console.WriteLine("Mennyit szeretne utalni?:");
-                    try
+                    string bekert = Console.ReadLine();
+                    if (!DecConverter(bekert))
                     {
-                        utalando = Convert.ToDecimal(Console.ReadLine());
-                        goodinput = true;
+                  
+                        Console.WriteLine("Nem megfelelő adat típust adott meg!");
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Console.WriteLine("Nem megfelelő adat!");
+                        utalando = Convert.ToDecimal(bekert);
+
+                        foreach(Account a in list)
+                        {
+                            
+                        }
+
                     }
+
                 } while (goodinput == false);
 
 
@@ -257,16 +277,35 @@ namespace bankolas
             }
             Console.WriteLine("Nyomjon meg egy gombot, hogy vissza térjen a menübe!");
             Console.ReadKey();
-            Menu(list,user);
-        
+            Menu(list, user);
+
         }
         static void Hitelkeretmod(List<Account> list)
         {
+            decimal keret = 0;
+            do {
+                Console.WriteLine("Adja meg a hitelkeret méretét(A nyitóegyenlegének max 20%-a:");
+
+            
+            
+            
+            
+            } while ();
 
 
         }
-        
 
+        static bool DecConverter(string bekert)
+        {
+            try
+            {
+                Convert.ToDecimal(bekert);
+                return true;
+            }
+            catch (Exception ex)
+
+            { return false; }
+        }
 
     }
 }

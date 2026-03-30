@@ -31,6 +31,24 @@ namespace bankolas
         {
             return egyenleg;
         }
+        public decimal getHitelkeret()
+        {
+            return hitelkeret;
+        }
+        public bool HitelKeretChange(decimal input)
+        {
+            if (input <= (egyenleg / 100) * 20)
+            {
+                hitelkeret = input;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+      
     
 
         public bool DepositSuccesfull(decimal osszeg)
@@ -66,6 +84,8 @@ namespace bankolas
            
         }
 
+        
+
         public List<string> Naplozas(string muvelet)
         {
             DateTime date = DateTime.Now;
@@ -73,6 +93,7 @@ namespace bankolas
             naplo.Add(Convert.ToString(egyenleg));
             naplo.Add(muvelet);
             return naplo;
+            // Minden adatot kikéne naplózni, ki mit mikor 
         }
 
         public override string ToString()
