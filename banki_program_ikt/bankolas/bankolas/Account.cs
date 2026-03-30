@@ -98,7 +98,7 @@ namespace bankolas
 
         public override string ToString()
         {
-            return $"Tulajdonos:{tulajdonos}, Egyenleg:{egyenleg}, Számlaszám:{szamlaszam}";
+            return $"Tulajdonos:{tulajdonos}, Egyenleg:{egyenleg}, Számlaszám:{szamlaszam} Hitelkeret: {hitelkeret}";
         }
     }
 }

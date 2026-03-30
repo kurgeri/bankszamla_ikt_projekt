@@ -89,7 +89,8 @@ namespace bankolas
                         Adatok_Kiir(list, user);
                         break;
                     case 'H':
-                        Hitelkeretmod(list);
+                        Console.Clear();
+                        Hitelkeretmod(list,user);
                         break;
                     default:
                         Console.Clear();
@@ -105,7 +106,6 @@ namespace bankolas
         {
             decimal befizetett = 0;
             bool sikeresbefiz = false;
-            bool rosszadat_e = false;
             do
             {
                 Console.Write("Mennyit szeretne befizetni?: ");
@@ -126,7 +126,7 @@ namespace bankolas
                         {
                             sikeresbefiz = true;
                         }
-                        else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false && rosszadat_e == false)
+                        else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false)
                         {
 
                             Console.WriteLine("Negatív összeget nem adhat hozzá a számlájához!");
@@ -139,9 +139,6 @@ namespace bankolas
             Console.WriteLine("Sikeres befizetés! Nyomjon meg egy gombot, hogy vissza térjen a menübe");
             Console.ReadKey();
             Menu(list, user);
-
-
-
         }
         static void Kivetel(List<Account> list, string user)
         {
@@ -186,85 +183,72 @@ namespace bankolas
         {
 
             List<string> szemelyek = new List<string>();
-            bool nincspenz = false;
 
             foreach (Account a in list)
             {
 
                 if (user == a.getTulajdonos() && a.getEgyenleg() <= 0)
                 {
-                    nincspenz = true;
+
                 }
                 else if (user != a.getTulajdonos())
                 {
                     szemelyek.Add(a.getTulajdonos());
                 }
             }
-            if (nincspenz == true)
+
+            Console.WriteLine("Személyek akiknek tud utalni");
+            foreach (string s in szemelyek)
             {
-                Console.WriteLine("Nincs pénz a bankszámláján, nem tud utalni!");
-                Console.ReadKey();
-                Menu(list, user);
+                Console.WriteLine(s);
             }
-            else
+            bool goodinput = false;
+            string utaltszemely = string.Empty;
+
+            do
             {
-                Console.WriteLine("Személyek akiknek tud utalni");
+
+
+                Console.WriteLine("Kinek szeretne utalni?");
+                utaltszemely = Console.ReadLine();
                 foreach (string s in szemelyek)
                 {
-                    Console.WriteLine(s);
-                }
-                bool goodinput = false;
-                string utaltszemely = string.Empty;
-             
-                do
-                {
-
-
-                    Console.WriteLine("Kinek szeretne utalni?");
-                    utaltszemely = Console.ReadLine();
-                    foreach (string s in szemelyek)
+                    if (utaltszemely == s)
                     {
-                        if (utaltszemely == s)
-                        {
 
-                            goodinput = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Nincs ilyen személy a listában!");
-                        }
-
-                    }
-                } while (goodinput == false);
-                goodinput = false;
-                decimal utalando = 0;
-                do
-                {
-
-                    Console.WriteLine("Mennyit szeretne utalni?:");
-                    string bekert = Console.ReadLine();
-                    if (!DecConverter(bekert))
-                    {
-                  
-                        Console.WriteLine("Nem megfelelő adat típust adott meg!");
+                        goodinput = true;
                     }
                     else
                     {
-                        utalando = Convert.ToDecimal(bekert);
+                        Console.WriteLine($"Nincs ilyen személy a listában!");
+                    }
 
-                        foreach(Account a in list)
-                        {
-                            
-                        }
+                }
+            } while (goodinput == false);
+            goodinput = false;
+            decimal utalando = 0;
+            do
+            {
+
+                Console.WriteLine("Mennyit szeretne utalni?:");
+                string bekert = Console.ReadLine();
+                if (!DecConverter(bekert))
+                {
+
+                    Console.WriteLine("Nem megfelelő adat típust adott meg!");
+                }
+                else
+                {
+                    utalando = Convert.ToDecimal(bekert);
+
+                    foreach (Account a in list)
+                    {
 
                     }
 
-                } while (goodinput == false);
+                }
 
-
-            }
-
-
+            } while (goodinput == false);
 
         }
         static void Adatok_Kiir(List<Account> list, string user)
@@ -280,17 +264,41 @@ namespace bankolas
             Menu(list, user);
 
         }
-        static void Hitelkeretmod(List<Account> list)
+        static void Hitelkeretmod(List<Account> list,string user)
         {
             decimal keret = 0;
-            do {
-                Console.WriteLine("Adja meg a hitelkeret méretét(A nyitóegyenlegének max 20%-a:");
+            string bekert = string.Empty;
+            bool ervenyeshitelkeret = false;
 
-            
-            
-            
-            
-            } while ();
+            do
+            {
+                Console.WriteLine("Adja meg a hitelkeret méretét(A nyitóegyenlegének max 20%-a:");
+                bekert = Console.ReadLine();
+                if (!DecConverter(bekert))
+                {
+
+                    Console.WriteLine("Nem megfelelő adat típust adott meg!");
+                }
+                else
+                {
+                    keret = Convert.ToDecimal(bekert);
+                    foreach (Account a in list)
+                    {
+                        if (a.getTulajdonos() == user &&  a.HitelKeretChange(keret) == true)
+                        {
+                            ervenyeshitelkeret = true;
+                        }
+                        else if(a.getTulajdonos() == user && a.HitelKeretChange(keret) == false)
+                        {
+                            Console.WriteLine("Több mint a 20%-a!");
+                        }
+                    }
+                }
+
+            } while (DecConverter(bekert) == false || ervenyeshitelkeret == false);
+            Console.WriteLine("Sikeres módosítás, nyomjon meg egy gombot, hogy visszatérjen a menübe");
+            Console.ReadKey();
+            Menu(list, user);
 
 
         }
