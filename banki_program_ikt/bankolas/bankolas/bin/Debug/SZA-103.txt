@@ -1,0 +1,20 @@
+Adatok:
+Tulajdonos:Kiss Ádám;Egyenleg:5355956;Számlaszám:SZA-103;Hitelkeret: 0
+Módosítás:Befizetés
+Dátum:2026. 03. 31. 14:41:26
+Adatok:
+Tulajdonos:Kiss Ádám;Egyenleg:5354733;Számlaszám:SZA-103;Hitelkeret: 0
+Módosítás:Kifizetés
+Dátum:2026. 03. 31. 14:41:30
+Adatok:
+Tulajdonos:Kiss Ádám;Egyenleg:5354733;Számlaszám:SZA-103;Hitelkeret: 303
+Módosítás:Hitelkeret módosítása
+Dátum:2026. 03. 31. 14:41:33
+Adatok:
+Tulajdonos:Kiss Ádám;Egyenleg:5354733;Számlaszám:SZA-103;Hitelkeret: 303
+Módosítás:Hitelkeret módosítása
+Dátum:2026. 03. 31. 14:41:35
+Adatok:
+Tulajdonos:Kiss Ádám;Egyenleg:5354733;Számlaszám:SZA-103;Hitelkeret: 303
+Módosítás:Hitelkeret módosítása
+Dátum:2026. 03. 31. 14:42:27

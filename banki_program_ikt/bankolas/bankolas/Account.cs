@@ -14,6 +14,7 @@ namespace bankolas
         private decimal nyitoegyenleg;
         private decimal hitelkeret;
         private bool hitelkeretmodositva;
+        private string muvelet;
         private List<string> naplo;
 
 
@@ -24,9 +25,14 @@ namespace bankolas
             egyenleg = balance;
             nyitoegyenleg = balance;
             hitelkeretmodositva = false;
+            naplo = new List<string>();
 
         
   
+        }
+        public string getSzamlaszam()
+        {
+            return szamlaszam;
         }
         public string getTulajdonos()
         { return tulajdonos; }
@@ -48,6 +54,7 @@ namespace bankolas
             if (input <= (nyitoegyenleg / 100) * 20)
             {
                 hitelkeretmodositva = true;
+                muvelet = "Hitelkeret módosítása";
                 hitelkeret = input;
                 return true;
             }
@@ -55,6 +62,7 @@ namespace bankolas
             {
                 return false;
             }
+            
         }
 
       
@@ -66,6 +74,7 @@ namespace bankolas
             if (osszeg > 0)
             {
                 egyenleg += osszeg;
+                muvelet = "Befizetés";
                 return true;
                
             }
@@ -83,6 +92,7 @@ namespace bankolas
             if (egyenleg - osszeg >= 0)
             {
                 egyenleg = egyenleg - osszeg;
+                muvelet = "Kifizetés";
                 return true;
             }
             else
@@ -92,21 +102,24 @@ namespace bankolas
 
            
         }
+        public bool Utalas()
+        {
+            muvelet = "Utalás";
+            return true;
+        }
 
         
 
-        public List<string> Naplozas(string muvelet)
+        public List<string> Naplozas()
         {
             DateTime date = DateTime.Now;
-            naplo.Add(Convert.ToString(date));
-            naplo.Add(Convert.ToString(egyenleg));
-            naplo.Add(muvelet);
+            naplo.Add($"Adatok:\nTulajdonos:{tulajdonos};Egyenleg:{egyenleg};Számlaszám:{szamlaszam};Hitelkeret: {hitelkeret}\nMódosítás:{muvelet}\nDátum:{date}\n");
             return naplo;
         }
 
         public override string ToString()
         {
-            return $"Tulajdonos:{tulajdonos}, Egyenleg:{egyenleg}, Számlaszám:{szamlaszam} Hitelkeret: {hitelkeret}";
+            return $"Tulajdonos:{tulajdonos};Egyenleg:{egyenleg};Számlaszám:{szamlaszam};Hitelkeret: {hitelkeret}";
         }
     }
 }

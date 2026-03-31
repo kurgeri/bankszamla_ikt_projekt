@@ -27,7 +27,7 @@ namespace bankolas
 
         static void Felhasznalo(List<Account> list)
         {
-            string user = string.Empty;
+            string user;
             Console.WriteLine("Tulajdonsok:");
             foreach (Account a in list)
             {
@@ -68,7 +68,7 @@ namespace bankolas
             do
             {
                 Console.WriteLine($"Szép napot {user}! ");
-                Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nVálasszon a kívánt opciók közül: ");
+                Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nN: Naplózás\nVálasszon a kívánt opciók közül: ");
                 try
                 {
                     opcio = Convert.ToChar(Console.ReadLine().ToUpper());
@@ -101,13 +101,18 @@ namespace bankolas
                         Console.Clear();
                         Hitelkeretmod(list,user);
                         break;
+                    case 'N':
+                        Console.Clear();
+                        Naplo_fajlbaKiir(list, user);
+                        break;
+
                     default:
                         Console.Clear();
                         Console.WriteLine("Nem megfelelő adattípus!");
                         break;
                 }
 
-            } while (opcio != 'B' && opcio != 'K' && opcio != 'A' && opcio != 'H' && opcio != 'U');
+            } while (opcio != 'B' && opcio != 'K' && opcio != 'A' && opcio != 'H' && opcio != 'U' && opcio != 'N');
 
 
         }
@@ -134,6 +139,7 @@ namespace bankolas
                         if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == true)
                         {
                             sikeresbefiz = true;
+                            a.Naplozas();
                         }
                         else if (user == a.getTulajdonos() && a.DepositSuccesfull(befizetett) == false)
                         {
@@ -173,6 +179,7 @@ namespace bankolas
                         if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == true)
                         {
                             sikereskivet = true;
+                            a.Naplozas();
                         }
                         else if (user == a.getTulajdonos() && a.WithDrawSuccesfull(kivett) == false)
                         {
@@ -305,6 +312,7 @@ namespace bankolas
                         if (a.getTulajdonos() == user &&  a.HitelKeretChange(keret) == true)
                         {
                             ervenyeshitelkeret = true;
+                            a.Naplozas();
                         }
                         else if(a.getTulajdonos() == user && a.HitelKeretChange(keret) == false)
                         {
@@ -318,6 +326,38 @@ namespace bankolas
             Console.ReadKey();
             Menu(list, user);
 
+
+        }
+
+        static void Naplo_fajlbaKiir(List<Account> list, string user)
+        {
+            List<string> naplo_adatok = new List<string>();
+
+            foreach (Account a in list)
+            {
+                naplo_adatok = a.Naplozas();
+               
+
+            }
+            foreach (Account a in list)
+            {
+                if(a.getTulajdonos() == user)
+                {
+                    StreamWriter naplo = new StreamWriter($"{a.getSzamlaszam()}.txt");
+                    foreach(string adatok in naplo_adatok)
+                    {
+                        naplo.Write(adatok);
+                    }
+                    naplo.Flush();
+                    naplo.Close();
+                    break;
+                
+           
+                }
+            }
+            Console.WriteLine("Sikeres naplózás!");
+            Console.ReadKey();
+            Menu(list, user);
 
         }
 
