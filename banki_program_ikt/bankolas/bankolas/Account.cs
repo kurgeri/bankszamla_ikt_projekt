@@ -11,7 +11,9 @@ namespace bankolas
         private string szamlaszam;
         private string tulajdonos;
         private decimal egyenleg;
+        private decimal nyitoegyenleg;
         private decimal hitelkeret;
+        private bool hitelkeretmodositva;
         private List<string> naplo;
 
 
@@ -20,6 +22,8 @@ namespace bankolas
             szamlaszam = invnum;
             tulajdonos = owner;
             egyenleg = balance;
+            nyitoegyenleg = balance;
+            hitelkeretmodositva = false;
 
         
   
@@ -35,10 +39,15 @@ namespace bankolas
         {
             return hitelkeret;
         }
+        public bool getHitelMod()
+        {
+            return hitelkeretmodositva;
+        }
         public bool HitelKeretChange(decimal input)
         {
-            if (input <= (egyenleg / 100) * 20)
+            if (input <= (nyitoegyenleg / 100) * 20)
             {
+                hitelkeretmodositva = true;
                 hitelkeret = input;
                 return true;
             }
@@ -93,7 +102,6 @@ namespace bankolas
             naplo.Add(Convert.ToString(egyenleg));
             naplo.Add(muvelet);
             return naplo;
-            // Minden adatot kikéne naplózni, ki mit mikor 
         }
 
         public override string ToString()

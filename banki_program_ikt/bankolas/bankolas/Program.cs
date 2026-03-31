@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Data.Common;
+using System.Runtime.CompilerServices;
 
 namespace bankolas
 {
@@ -54,7 +55,7 @@ namespace bankolas
 
 
             } while (bennevan == false);
-
+            
             Menu(list, user);
 
 
@@ -62,13 +63,21 @@ namespace bankolas
         static void Menu(List<Account> list, string user)
         {
             Console.Clear();
-            char opcio;
+            char opcio = ' ';
 
             do
             {
                 Console.WriteLine($"Szép napot {user}! ");
                 Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nVálasszon a kívánt opciók közül: ");
-                opcio = Convert.ToChar(Console.ReadLine().ToUpper());
+                try
+                {
+                    opcio = Convert.ToChar(Console.ReadLine().ToUpper());
+                }
+                catch(Exception e)
+                {
+                    opcio = ' ';
+                }
+               
 
 
                 switch (opcio)
@@ -94,7 +103,7 @@ namespace bankolas
                         break;
                     default:
                         Console.Clear();
-                        Console.WriteLine("Rossz adat");
+                        Console.WriteLine("Nem megfelelő adattípus!");
                         break;
                 }
 
@@ -179,7 +188,7 @@ namespace bankolas
             Menu(list, user);
 
         }
-        static void Utalas(List<Account> list, string user)
+      /* To-do*/  static void Utalas(List<Account> list, string user)
         {
 
             List<string> szemelyek = new List<string>();
@@ -269,6 +278,15 @@ namespace bankolas
             decimal keret = 0;
             string bekert = string.Empty;
             bool ervenyeshitelkeret = false;
+            foreach(Account a in list)
+            {
+                if (a.getHitelMod() == true)
+                {
+                    Console.WriteLine("A hitelkeretet csak egyszer lehet módosítani!");
+                    Console.ReadKey();
+                    Menu(list, user);
+                }
+            }
 
             do
             {
