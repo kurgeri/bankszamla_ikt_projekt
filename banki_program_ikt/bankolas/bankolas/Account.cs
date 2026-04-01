@@ -14,6 +14,7 @@ namespace bankolas
         private decimal nyitoegyenleg;
         private decimal hitelkeret;
         private bool hitelkeretmodositva;
+        private bool elsonapbej;
         private string muvelet;
         private List<string> naplo;
 
@@ -26,9 +27,14 @@ namespace bankolas
             nyitoegyenleg = balance;
             hitelkeretmodositva = false;
             naplo = new List<string>();
+            elsonapbej = false;
 
         
   
+        }
+        public List<string> getNaplo()
+        {
+            return naplo;
         }
         public string getSzamlaszam()
         {
@@ -48,6 +54,10 @@ namespace bankolas
         public bool getHitelMod()
         {
             return hitelkeretmodositva;
+        }
+        public bool getElsoNaploBejegyzes()
+        {
+            return elsonapbej;
         }
         public bool HitelKeretChange(decimal input)
         {
@@ -113,7 +123,8 @@ namespace bankolas
         public List<string> Naplozas()
         {
             DateTime date = DateTime.Now;
-            naplo.Add($"Adatok:\nTulajdonos:{tulajdonos};Egyenleg:{egyenleg};Számlaszám:{szamlaszam};Hitelkeret: {hitelkeret}\nMódosítás:{muvelet}\nDátum:{date}\n");
+            elsonapbej = true;
+            naplo.Add($"Tulajdonos:{tulajdonos};Egyenleg:{egyenleg};Számlaszám:{szamlaszam};Hitelkeret: {hitelkeret}\nMódosítás:{muvelet}\nDátum:{date}\n");
             return naplo;
         }
 

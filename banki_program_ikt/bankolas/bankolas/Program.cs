@@ -55,7 +55,14 @@ namespace bankolas
 
 
             } while (bennevan == false);
-            
+            foreach (Account a in list)
+            {
+                if (a.getElsoNaploBejegyzes() == false && a.getTulajdonos() == user)
+                {
+                    a.Naplozas();
+                }
+            }
+
             Menu(list, user);
 
 
@@ -64,20 +71,22 @@ namespace bankolas
         {
             Console.Clear();
             char opcio = ' ';
+           
+
 
             do
             {
                 Console.WriteLine($"Szép napot {user}! ");
-                Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nN: Naplózás\nVálasszon a kívánt opciók közül: ");
+                Console.Write($"B: Befiztés\nK: Kivétel\nU: Utalás\nA: Adatok kiírása\nH: Hitelkeret módosítása\nN: Naplózás és kilépés\nVálasszon a kívánt opciók közül: ");
                 try
                 {
                     opcio = Convert.ToChar(Console.ReadLine().ToUpper());
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     opcio = ' ';
                 }
-               
+
 
 
                 switch (opcio)
@@ -99,7 +108,7 @@ namespace bankolas
                         break;
                     case 'H':
                         Console.Clear();
-                        Hitelkeretmod(list,user);
+                        Hitelkeretmod(list, user);
                         break;
                     case 'N':
                         Console.Clear();
@@ -195,7 +204,8 @@ namespace bankolas
             Menu(list, user);
 
         }
-      /* To-do*/  static void Utalas(List<Account> list, string user)
+        /* To-do*/
+        static void Utalas(List<Account> list, string user)
         {
 
             List<string> szemelyek = new List<string>();
@@ -280,12 +290,12 @@ namespace bankolas
             Menu(list, user);
 
         }
-        static void Hitelkeretmod(List<Account> list,string user)
+        static void Hitelkeretmod(List<Account> list, string user)
         {
             decimal keret = 0;
             string bekert = string.Empty;
             bool ervenyeshitelkeret = false;
-            foreach(Account a in list)
+            foreach (Account a in list)
             {
                 if (a.getHitelMod() == true)
                 {
@@ -309,12 +319,12 @@ namespace bankolas
                     keret = Convert.ToDecimal(bekert);
                     foreach (Account a in list)
                     {
-                        if (a.getTulajdonos() == user &&  a.HitelKeretChange(keret) == true)
+                        if (a.getTulajdonos() == user && a.HitelKeretChange(keret) == true)
                         {
                             ervenyeshitelkeret = true;
                             a.Naplozas();
                         }
-                        else if(a.getTulajdonos() == user && a.HitelKeretChange(keret) == false)
+                        else if (a.getTulajdonos() == user && a.HitelKeretChange(keret) == false)
                         {
                             Console.WriteLine("Több mint a 20%-a!");
                         }
@@ -335,29 +345,28 @@ namespace bankolas
 
             foreach (Account a in list)
             {
-                naplo_adatok = a.Naplozas();
-               
+                naplo_adatok = a.getNaplo();
+
 
             }
             foreach (Account a in list)
             {
-                if(a.getTulajdonos() == user)
+                if (a.getTulajdonos() == user)
                 {
                     StreamWriter naplo = new StreamWriter($"{a.getSzamlaszam()}.txt");
-                    foreach(string adatok in naplo_adatok)
+                    foreach (string adatok in naplo_adatok)
                     {
                         naplo.Write(adatok);
                     }
                     naplo.Flush();
                     naplo.Close();
                     break;
-                
-           
+
+
                 }
             }
             Console.WriteLine("Sikeres naplózás!");
-            Console.ReadKey();
-            Menu(list, user);
+
 
         }
 
