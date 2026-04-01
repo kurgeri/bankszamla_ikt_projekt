@@ -244,10 +244,7 @@ namespace bankolas
 
                         goodinput = true;
                     }
-                    else
-                    {
-                        Console.WriteLine($"Nincs ilyen személy a listában!");
-                    }
+                
 
                 }
             } while (goodinput == false);
@@ -269,12 +266,30 @@ namespace bankolas
 
                     foreach (Account a in list)
                     {
-
+                        if(a.getTulajdonos() == utaltszemely && a.Utalas(utalando) == true)
+                        {
+                            a.DepositSuccesfull(utalando);
+                            goodinput = true;
+                            
+                        }
+                        else if(a.getTulajdonos() == utaltszemely && a.Utalas(utalando) == false)
+                        {
+                            Console.WriteLine("Nincs elég pénz a számláján");
+                        }
+                    }
+                    foreach(Account a in list)
+                    {
+                        if(user == a.getTulajdonos())
+                        {
+                            a.WithDrawSuccesfull(utalando);
+                        }
                     }
 
                 }
 
             } while (goodinput == false);
+            Console.WriteLine("Sikeres utalás, vissza a menübe!");
+            Menu(list, user);
 
         }
         static void Adatok_Kiir(List<Account> list, string user)

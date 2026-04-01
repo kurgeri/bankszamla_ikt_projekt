@@ -75,6 +75,19 @@ namespace bankolas
             
         }
 
+        public bool Utalas(decimal input)
+        {
+            if(input > egyenleg)
+            {
+                return false;
+            }
+            else
+            {
+            
+                return true;
+            }
+
+        }
       
     
 
